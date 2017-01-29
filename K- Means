@@ -12,5 +12,6 @@ LPR (The exam performance of user for related objects with goal object) (input v
 PEG (The exam performance of user for goal objects) (input value)
 
 Problem Statement:
-To discover how many clusters, appear to be reasonable for this data; this would be useful, for example, if we wanted to try to build a classification model for knowledge level and we needed to assign a knowledge level to the individual sample.
+To discover how many clusters, appear to be reasonable for this data; this would be useful, for example, if we wanted to try 
+to build a classification model for knowledge level and we needed to assign a knowledge level to the individual sample.
 
