@@ -2,3 +2,15 @@ K- Means Clustering Technique using R and finding ways to analyze the optimal nu
 
 To perform K- Means Clustering algorithm I have taken the data set from UCI
 https://archive.ics.uci.edu/ml/datasets/ser+Knowledge+Modeling+Data+%28Students%27+Knowledge+Levels+on+DC+Electrical+Machines%29
+
+Dataset Description:
+This data measures students’ knowledge of a topic in Electrical Engineering. The attribute definitions are as follows:
+STG (The degree of study time for goal object materials), (input value) 
+SCG (The degree of repetition number of user for goal object materials) (input value) 
+STR (The degree of study time of user for related objects with goal object) (input value) 
+LPR (The exam performance of user for related objects with goal object) (input value) 
+PEG (The exam performance of user for goal objects) (input value)
+
+Problem Statement:
+To discover how many clusters, appear to be reasonable for this data; this would be useful, for example, if we wanted to try to build a classification model for knowledge level and we needed to assign a knowledge level to the individual sample.
+
