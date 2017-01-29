@@ -1,0 +1,4 @@
+K- Means Clustering Technique using R and finding ways to analyze the optimal number of Clusters.
+
+To perform K- Means Clustering algorithm I have taken the data set from UCI
+https://archive.ics.uci.edu/ml/datasets/ser+Knowledge+Modeling+Data+%28Students%27+Knowledge+Levels+on+DC+Electrical+Machines%29
