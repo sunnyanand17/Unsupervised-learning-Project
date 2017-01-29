@@ -3,7 +3,30 @@ Dataset Analysis (Pre-processing Applied):
 The first step to analyze the data was to ensure the data is ready for such an analysis. The data was imported as a csv file into R studio. A summary of the data showed there were 402 records and 5 variables each of the type double. I then checked the data for any missing or NA values, this dataset had no NA or missing values. At first viewing of the data it seemed as if all the values are within 0 to 1 range. But when trying to plot them against each other it seemed to be of sparsely spread dataset. So I decided to make this data centered and then scaled to make it more organized and reduce the sparseness of the data. This was cross-validated when I applied the k-means function to an unscaled data vs a scaled data. The unscaled data failed to converge in 10 iterations whereas a scaled data converged in 10 iterations. Thus scaling of the data allowed for a better and faster usage of the k-means algorithm. 
 
 Applying K-means algorithm for clustering the given dataset:
-The R contains a basic K-means function- kmeans() which performs k-means clustering on a data matrix. The function requires the number of clusters you wish to create, in this case k. The function allows to specify the maximum number of iterations (iter.max) which one wants to allow the algorithm to run for before converging to a local mean for each of the clusters. The argument (nstart) allows to specify the algorithm to choose that many random points as the initial set of clusters, so if I run the algorithm with nstart=15 it will choose 15 such random set of initial k means. The kmeans() can be difficult while trying to guess which is a suitable number of cluster for a dataset. To resolve this issue I have explored 3 approaches which I have applied to ensure one validates the others.
-Elbow Method: This method plots the total within groups sum of squares vs the number of clusters. The method then analyzes the bend in the graph to determine k at which the variation in the sum of squares drops by adding an extra cluster. This dataset seems to find that k at 4. At k=4 the graph tends to start smoothing and the bend is less later for k=5. However, an important observation here is if we select k=5 instead of k=4 we see the rest of the graph flattening at the same level of k=5 with even lesser drop. So it becomes a tough choice between k=4 and k=5 as to which can be the best value for kmeans clustering.
-Mclust Package:  Determine the optimal model and number of clusters according to the Bayesian Information Criterion for expectation-maximization, initialized by hierarchical clustering for parameterized Gaussian mixture models. In this method I had set the modelNames parameter to mclust.options("emModelNames") so that it includes only those models for evaluation where the number of observation is greater than the dimensions of the dataset here 402>5. The best model selected was EVI (Equal Volume but Variable shape and using Identity Matrix for the eigen values) with number of clusters 3 and 4. So based on this and the previous method the natural number of clusters choice was 4. To further validate this I checked for the BIC(Bayesian Information Criterion for k means) and it seems to validate the findings of Mclust package showing that cluster choice of 3 and 4 are the best and of highest value for this distribution of data. 
-FCP Package: To further verify my findings, I again checked for average silhouette width or Calinski-Harabasz criterion using the fcp package. The best choice of the cluster was 4 for kmeans using the kmeansruns() function in the fcp package and using the average silhouette width. 
+The R contains a basic K-means function- kmeans() which performs k-means clustering on a data matrix. The function requires 
+the number of clusters you wish to create, in this case k. The function allows to specify the maximum number of iterations 
+(iter.max) which one wants to allow the algorithm to run for before converging to a local mean for each of the clusters. 
+The argument (nstart) allows to specify the algorithm to choose that many random points as the initial set of clusters, so if I 
+run the algorithm with nstart=15 it will choose 15 such random set of initial k means. The kmeans() can be difficult while trying 
+to guess which is a suitable number of cluster for a dataset. 
+
+To resolve this issue I have explored 3 approaches which I have applied to ensure one validates the others.
+
+Elbow Method: This method plots the total within groups sum of squares vs the number of clusters. The method then analyzes the 
+bend in the graph to determine k at which the variation in the sum of squares drops by adding an extra cluster. This dataset seems 
+to find that k at 4. At k=4 the graph tends to start smoothing and the bend is less later for k=5. However, an important 
+observation here is if we select k=5 instead of k=4 we see the rest of the graph flattening at the same level of k=5 with even 
+lesser drop. So it becomes a tough choice between k=4 and k=5 as to which can be the best value for kmeans clustering.
+
+Mclust Package:  Determine the optimal model and number of clusters according to the Bayesian Information Criterion for 
+expectation-maximization, initialized by hierarchical clustering for parameterized Gaussian mixture models. In this method I had 
+set the modelNames parameter to mclust.options("emModelNames") so that it includes only those models for evaluation where the 
+number of observation is greater than the dimensions of the dataset here 402>5. The best model selected was 
+EVI (Equal Volume but Variable shape and using Identity Matrix for the eigen values) with number of clusters 3 and 4.
+So based on this and the previous method the natural number of clusters choice was 4. To further validate this I checked for the 
+BIC(Bayesian Information Criterion for k means) and it seems to validate the findings of Mclust package showing that cluster 
+choice of 3 and 4 are the best and of highest value for this distribution of data. 
+
+FCP Package: To further verify my findings, I again checked for average silhouette width or Calinski-Harabasz criterion using the 
+fcp package. The best choice of the cluster was 4 for kmeans using the kmeansruns() function in the fcp package and using the 
+average silhouette width. 
